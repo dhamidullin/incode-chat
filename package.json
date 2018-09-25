@@ -1,0 +1,46 @@
+{
+  "name": "chat",
+  "version": "0.0.0",
+  "description": "test project for incode",
+  "license": "ISC",
+  "author": "Danis Khamidullin",
+  "main": "app.js",
+  "keywords": [],
+  "scripts": {
+    "build": "react-scripts build",
+    "dev": "nodemon bin/www",
+    "serve": "react-scripts start",
+    "start": "node bin/www"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "mongoose": "^5.2.16",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "nodemon": "^1.18.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
+    "sort-package-json": "^1.15.0"
+  },
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:8080"
+    }
+  }
+}
