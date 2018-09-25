@@ -1,0 +1,32 @@
+.container {
+  max-width: 600px;
+  margin: 1.5vw auto 5vw;
+  color: var(--back-opposite);
+  input {
+    border: 1px solid var(--back-opposite);
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: var(--orangegray);
+    color: var(--orangegray-opposite);
+    font-size: 140%;
+    padding: 4px 10px; // default is 15px
+    border-radius: 2px;
+    box-shadow: inset 0px 0px 3px -1px rgba(0, 0, 0, 0.67);
+    &:focus {
+      outline: none;
+    }
+    &#repeat {
+    //   margin-bottom: 4px;
+    }
+  }
+  input[type="submit"] {
+    font-size: 120%;
+    background: var(--back);
+    color: var(---back-opposite);
+  }
+}
