@@ -11,10 +11,10 @@ class HeaderComponent extends Component {
         </Link>
         <ul className="navbar-menu">
           <li>
-            <Link to="register">Вход</Link>
+            <Link to="login">Вход</Link>
           </li>
           <li>
-            <Link to="login">Регистрация</Link>
+            <Link to="register">Регистрация</Link>
           </li>
 
           <li>
