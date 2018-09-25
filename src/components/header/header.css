@@ -1,0 +1,103 @@
+header {
+  background: #222222;
+  width: 100%;
+  padding: 1vw 5vw;
+  display: table;
+  clear: both;
+  content: "";
+}
+header .logo {
+  font-size: 200%;
+  float: left;
+}
+header ul.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+  position: relative;
+}
+header ul.navbar-menu li {
+  display: inline-block;
+  margin: 10px 15px;
+  position: relative;
+}
+header ul.navbar-menu li a,
+header ul.navbar-menu li span {
+  font-size: 110%;
+}
+header ul.navbar-menu li ul {
+  display: none;
+  position: absolute;
+  right: -50%;
+  top: 100%;
+  width: auto;
+  border: 2px solid black;
+  background: #383838;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+header ul.navbar-menu li ul li {
+  margin: 4px 7px;
+  white-space: nowrap;
+}
+header ul.navbar-menu li:hover ul {
+  display: block;
+}
+header a,
+header span {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: all 300ms;
+}
+header a:before,
+header span:before {
+  top: 5%;
+  left: 0;
+}
+header a:after,
+header span:after {
+  bottom: 0;
+  right: 0;
+}
+header a:before,
+header span:before,
+header a:after,
+header span:after {
+  content: "";
+  width: 0;
+  display: inline-block;
+  position: absolute;
+  height: 1px;
+  transition: all 300ms;
+  transition-delay: 60ms;
+  background: repeating-linear-gradient(90deg, transparent, var(--yellow), transparent);
+  opacity: 0.8;
+}
+header a:hover,
+header span:hover {
+  color: var(--yellow);
+  transition: all 300ms cubic-bezier(0.25, 0.995, 0.1, 1);
+}
+header a:hover:before,
+header span:hover:before {
+  left: initial;
+  right: 0;
+}
+header a:hover:after,
+header span:hover:after {
+  left: 0;
+  right: initial;
+}
+header a:hover:before,
+header span:hover:before,
+header a:hover:after,
+header span:hover:after {
+  width: 100%;
+  transition: all 400ms cubic-bezier(0.25, 0.995, 0.1, 1);
+}
