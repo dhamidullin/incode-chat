@@ -1,7 +1,10 @@
 :root {
   --back: #d5d5d5;
+  --back-opposite: #2a2a2a;
   --back-dark: #5d4d49;
   --yellow: #ffffa0;
+  --orangegray: #beab9c;
+  --orangegray-opposite: #415463;
 }
 body {
   margin: 0;
@@ -10,4 +13,25 @@ body {
 }
 * {
   box-sizing: border-box;
+}
+.container {
+  padding: 1vw;
+  // padding-top: 2vw;
+}
+
+.button {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.67);
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.67);
+    transform: translateX(1px) translateY(1px);
+  }
+  // TODO: дополнить стили для кнопок
+  // FIXME: при нажатии плохая анимация
 }
