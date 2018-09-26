@@ -9,7 +9,8 @@ var UserSchema = new mongoose.Schema(
       type: String,
       lowercase: true,
       index: true,
-      unique: true
+      unique: true,
+      max: 32
     },
     hash: String,
     salt: String
