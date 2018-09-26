@@ -1,0 +1,52 @@
+.query-bar {
+  background: var(--orangegray);
+  color: var(--orangegray-opposite);
+  border-bottom: 1px solid var(--back-opposite);
+}
+.query-bar form.row {
+  padding: 8px;
+  width: 100%;
+}
+.query-bar form.row > .input-group {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.query-bar form.row .input-group {
+  flex-grow: 0;
+  display: inline-block;
+  padding: 4px 6px;
+}
+.query-bar form.row .input-group label {
+  display: inline-block;
+  margin: 0 4px;
+}
+.query-bar form.row .input-group input#username {
+  width: 140px;
+}
+.query-bar form.row .input-group input[type="range"] {
+  width: 180px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.query-bar form.row .input-group input:focus {
+  outline: none;
+}
+.query-bar form.row .input-group span.range-value {
+  display: inline-block;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 100px;
+  opacity: 0.60;
+  pointer-events: none;
+}
+.query-bar form.row .input-group span.range-value.hidden {
+  display: none;
+}
+.container.history {
+  padding-top: 0;
+}

@@ -9,6 +9,7 @@ import HeaderComponent from "./components/header/Header";
 import RegistrationComponent from "./components/authorization/Registration";
 import LoginComponent from "./components/authorization/Login";
 import ChatComponent from "./components/chat/Chat";
+import HistoryComponent from "./components/history/History";
 
 ReactDOM.render(
   <Router>
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route exact path="/chat" component={ChatComponent} />
       <Route exact path="/register" component={RegistrationComponent} />
       <Route exact path="/login" component={LoginComponent} />
+      <Route exact path="/history" component={HistoryComponent} />
     </div>
   </Router>,
   document.getElementById("root")
