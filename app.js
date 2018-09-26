@@ -39,15 +39,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "build")));
 app.use(passport.initialize());
 
-/* log all request */
+/* LOG ALL REQUESTS */
 app.use((req, res, next) => {
-  console.log(
-    `${req.method} ${req.url}, \n ${
-      req.method == "POST" || req.method == "PUT"
-        ? ", " + JSON.stringify(req.body)
-        : ""
-    }`
-  );
+  console.log(`${req.method} ${req.url}`);
 
   next();
 });
