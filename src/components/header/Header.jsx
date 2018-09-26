@@ -20,6 +20,15 @@ class HeaderComponent extends Component {
           Chat
         </Link>
         <ul className="navbar-menu">
+          <li>
+            <Link to="chat">
+              Чат{" "}
+              {!this.isAuthenticated && (
+                <span className="small-text">(read only)</span>
+              )}{" "}
+            </Link>
+          </li>
+
           {!this.isAuthenticated && (
             <Fragment>
               <li>
@@ -31,14 +40,6 @@ class HeaderComponent extends Component {
             </Fragment>
           )}
 
-          <li>
-            <Link to="chat">
-              Чат{" "}
-              {!this.isAuthenticated && (
-                <span className="small-text">(read only)</span>
-              )}{" "}
-            </Link>
-          </li>
           {this.isAuthenticated && (
             <li>
               <Link to="dialogs">Диалоги</Link>
