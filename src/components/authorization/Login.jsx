@@ -13,7 +13,7 @@ class LoginComponent extends Component {
             let username = e.target[0].value;
             let password = e.target[1].value;
 
-            post("/api/authentication/", {
+            post("/api/authentication/login", {
               username,
               password
             })
@@ -21,8 +21,12 @@ class LoginComponent extends Component {
                 window.localStorage.setItem("token", res.data.token);
                 this.props.history.push("/chat");
               })
-              .catch(res => {
-                alert("Ошибка запроса");
+              .catch(err => {
+                if (!err.response) {
+                  alert("Сервер недоступен");
+                } else {
+                  alert(err.response.data.err);
+                }
               });
           }}
         >

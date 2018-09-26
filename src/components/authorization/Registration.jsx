@@ -14,7 +14,7 @@ class RegistrationComponent extends Component {
             let password = e.target[1].value;
             let repeat = e.target[2].value;
 
-            post("/api/authentication/", {
+            post("/api/authentication/register", {
               username,
               password,
               repeat
