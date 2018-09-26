@@ -1,8 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 
 class HeaderComponent extends Component {
+  get isAuthenticated() {
+    let token = window.localStorage.getItem("token");
+    if (token) {
+      var payload = JSON.parse(window.atob(token.split(".")[1]));
+      return payload.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     return (
       <header>
@@ -10,31 +20,51 @@ class HeaderComponent extends Component {
           Chat
         </Link>
         <ul className="navbar-menu">
-          <li>
-            <Link to="login">Вход</Link>
-          </li>
-          <li>
-            <Link to="register">Регистрация</Link>
-          </li>
-
-          <li>
-            <Link to="chat">Чат</Link>
-          </li>
-          <li>
-            <Link to="dialogs">Диалоги</Link>
-          </li>
-
-          <li>
-            <span>Профиль</span>
-            <ul>
+          {!this.isAuthenticated && (
+            <Fragment>
               <li>
-                <Link to="settings">Настройки</Link>
+                <Link to="login">Вход</Link>
               </li>
               <li>
-                <span>Выход</span>
+                <Link to="register">Регистрация</Link>
               </li>
-            </ul>
+            </Fragment>
+          )}
+
+          <li>
+            <Link to="chat">
+              Чат{" "}
+              {!this.isAuthenticated && (
+                <span className="small-text">(read only)</span>
+              )}{" "}
+            </Link>
           </li>
+          {this.isAuthenticated && (
+            <li>
+              <Link to="dialogs">Диалоги</Link>
+            </li>
+          )}
+
+          {this.isAuthenticated && (
+            <li>
+              <span>Профиль</span>
+              <ul>
+                <li>
+                  <Link to="settings">Настройки</Link>
+                </li>
+                <li>
+                  <span
+                    onClick={() => {
+                      window.localStorage.removeItem("token");
+                      this.props.history.push("/chat");
+                    }}
+                  >
+                    Выход
+                  </span>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
       </header>
     );

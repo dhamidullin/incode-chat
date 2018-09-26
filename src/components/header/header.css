@@ -55,6 +55,11 @@ header span {
   position: relative;
   transition: all 300ms;
 }
+header a span.small-text,
+header span span.small-text {
+  font-size: 75% !important;
+  color: rgba(255, 255, 255, 0.75);
+}
 header a:before,
 header span:before {
   top: 5%;
