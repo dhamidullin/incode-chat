@@ -1,13 +1,17 @@
-.container {
+.container.login,
+.container.registration {
   max-width: 600px;
   margin: 1.5vw auto 5vw;
   color: var(--back-opposite);
 }
-.container input {
+.container.login input,
+.container.registration input {
   border: 1px solid var(--back-opposite);
 }
-.container input[type="text"],
-.container input[type="password"] {
+.container.login input[type="text"],
+.container.registration input[type="text"],
+.container.login input[type="password"],
+.container.registration input[type="password"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -19,11 +23,14 @@
   border-radius: 2px;
   box-shadow: inset 0px 0px 3px -1px rgba(0, 0, 0, 0.67);
 }
-.container input[type="text"]:focus,
-.container input[type="password"]:focus {
+.container.login input[type="text"]:focus,
+.container.registration input[type="text"]:focus,
+.container.login input[type="password"]:focus,
+.container.registration input[type="password"]:focus {
   outline: none;
 }
-.container input[type="submit"] {
+.container.login input[type="submit"],
+.container.registration input[type="submit"] {
   font-size: 120%;
   background: var(--back);
   color: var(---back-opposite);

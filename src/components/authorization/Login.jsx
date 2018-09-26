@@ -5,7 +5,7 @@ import "./index.css";
 class LoginComponent extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container login">
         <form
           onSubmit={e => {
             e.preventDefault();
