@@ -13,17 +13,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
-var jwt = require("express-jwt");
-var config = require("../config");
 var mongoose = require("mongoose");
-
-var auth = jwt({
-  secret: config.jwt_secret,
-  userProperty: "user",
-  getToken: req => {
-    return req.headers.authorization;
-  }
-});
 
 var User = mongoose.model("User");
 
