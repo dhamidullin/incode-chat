@@ -36,7 +36,6 @@ router.put("/message", authorization_handler, function(req, res, next) {
       res.end();
 
       last.push(payload);
-      console.log({ last });
       if (last.length > max) {
         last = last.slice(last.length - max);
       }

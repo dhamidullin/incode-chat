@@ -29,7 +29,7 @@ require("./models/Message");
 
 require("./passport");
 
-var io = require("./chat_engine_io");
+var io = require("./chat-engine");
 
 var app = express();
 
