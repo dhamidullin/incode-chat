@@ -37,6 +37,11 @@ class HeaderComponent extends Component {
               )}{" "}
             </Link>
           </li>
+          {this.isAuthenticated && (
+            <li>
+              <Link to="history">История</Link>
+            </li>
+          )}
 
           {!this.isAuthenticated && (
             <Fragment>
