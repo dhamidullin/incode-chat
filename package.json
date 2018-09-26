@@ -1,7 +1,7 @@
 {
   "name": "chat",
-  "version": "0.0.0",
-  "description": "test project for incode",
+  "version": "0.1.0",
+  "description": "Test project for Slice Planet, chat.",
   "license": "ISC",
   "author": "Danis Khamidullin",
   "main": "app.js",
