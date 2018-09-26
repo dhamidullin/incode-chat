@@ -19,28 +19,22 @@ router.put("/message", authorization_handler, function(req, res, next) {
 
   let message = new Message();
 
+  message.owner_id = req.user._id;
+  message.owner_username = req.user.username;
   message.text = req.body.text;
-  message.owner_id = req.user.owner_id;
 
   message.save((err, newMessage) => {
     if (!err) {
-      let payload = {
-        /** this is complete information of message */
-        _id: newMessage._id,
-        username: req.user.username,
-        text: newMessage.text,
-        date: newMessage.date
-      };
-
-      events.emit("added_chat_message", payload);
+      events.emit("added_chat_message", newMessage);
       res.end();
 
-      last.push(payload);
+      last.push(newMessage);
       if (last.length > max) {
         last = last.slice(last.length - max);
       }
+    } else {
+      res.status(500).end();
     }
-    res.status(500).end();
   });
 });
 

@@ -23,8 +23,6 @@ class ChatComponent extends Component {
     });
 
     var socket = io("http://localhost:8081", {
-      reconnection: false,
-      autoConnect: false,
       query: "token=" + window.localStorage.getItem("token")
     });
     socket.on("added_chat_message", data => {
@@ -89,6 +87,7 @@ class ChatComponent extends Component {
                   ? "Сперва войдите или зарегестрируйтесь"
                   : ""
               }
+              maxLength="300"
             />
             <input type="submit" value="=>" disabled={!this.isAuthenticated} />
           </div>
@@ -106,18 +105,15 @@ class Message extends Component {
   //     };
   //   }
   render() {
-    let { username, time, text } = this.props.message;
+    let { owner_id, owner_username, time, text } = this.props.message;
     return (
       <div className="message">
         <div className="first-line">
-          <Link to="users/margaret" className="name">
-            {username}
+          <Link to={`users/${owner_id}`} className="name">
+            {owner_username}
           </Link>
           <div className="date">
-            {
-              new Sugar.Date(time).format("{dd} {Mon} {yyyy} {HH}:{mm}:{ss}")
-                .raw
-            }
+            {new Sugar.Date(time).format("{dd} {Mon}, {HH}:{mm}:{ss}").raw}
           </div>
           <div className="spacer" />
           {/* <div className="raiting">

@@ -7,9 +7,10 @@ var MessageSchema = new mongoose.Schema({
     type: String,
     index: true
   },
+  owner_username: String,
   text: {
     type: String,
-    max: 256
+    maxlength: 300
   },
   date: { type: Number, default: Date.now }
 });
