@@ -8,6 +8,7 @@
   border-radius: 17px;
   padding: 8px;
   margin-bottom: 5vw;
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.67);
 }
 .container.chat form div.history {
   border-radius: 10px;
@@ -16,7 +17,7 @@
   height: 90%;
   height: 500px;
   position: relative;
-  box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.67);
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.67);
 }
 .container.chat form div.history .row {
   position: absolute;
@@ -69,14 +70,12 @@
   width: 100%;
   display: inline-flex;
   padding: 10px 0 5px;
+  font-size: 110%;
 }
-.container.chat form .inputs input[type="text"],
-.container.chat form .inputs input[type="submit"] {
-  height: 100%;
-  font-size: 120%;
+.container.chat form .inputs input {
+  font-size: 110%;
 }
-.container.chat form .inputs input[type="text"]:focus,
-.container.chat form .inputs input[type="submit"]:focus {
+.container.chat form .inputs input:focus {
   outline: none;
 }
 .container.chat form .inputs input[type="text"] {

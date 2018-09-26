@@ -1,4 +1,4 @@
-import React, { Component /* Fragment */ } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { put, get } from "axios";
 import io from "socket.io-client";
@@ -77,12 +77,21 @@ class ChatComponent extends Component {
               ))}
             </div>
           </div>
-          {this.isAuthenticated && (
-            <div className="inputs">
-              <input type="text" name="message" id="message" multiple />
-              <input type="submit" value="=>" />
-            </div>
-          )}
+          <div className="inputs">
+            <input
+              type="text"
+              name="message"
+              id="message"
+              multiple
+              disabled={!this.isAuthenticated}
+              placeholder={
+                !this.isAuthenticated
+                  ? "Сперва войдите или зарегестрируйтесь"
+                  : ""
+              }
+            />
+            <input type="submit" value="=>" disabled={!this.isAuthenticated} />
+          </div>
         </form>
       </div>
     );
@@ -106,7 +115,7 @@ class Message extends Component {
           </Link>
           <div className="date">
             {
-              new Sugar.Date(time).format("{dd} {Month} {yyyy} {HH}:{mm}:{ss}")
+              new Sugar.Date(time).format("{dd} {Mon} {yyyy} {HH}:{mm}:{ss}")
                 .raw
             }
           </div>
