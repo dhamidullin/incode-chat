@@ -1,0 +1,95 @@
+.container.chat {
+  max-width: 600px;
+  margin: 1.5vw auto 5vw;
+  color: var(--back-opposite);
+}
+.container.chat form {
+  border: 1px solid var(--back-opposite);
+  border-radius: 17px;
+  padding: 8px;
+  margin-bottom: 5vw;
+}
+.container.chat form div.history {
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  height: 90%;
+  height: 500px;
+  position: relative;
+  box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.67);
+}
+.container.chat form div.history .row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1vw;
+  padding-bottom: 1.5vw;
+}
+.container.chat form div.history .row .message {
+  margin-top: 25px;
+}
+.container.chat form div.history .row .message .first-line {
+  padding: 4px 2px;
+  display: inline-flex;
+  width: 100%;
+}
+.container.chat form div.history .row .message .first-line .name {
+  margin-right: 7px;
+  font-size: 110%;
+  color: var(--back-opposite);
+  flex-grow: 0;
+}
+.container.chat form div.history .row .message .first-line .date {
+  font-size: 75%;
+  opacity: 0.7;
+  flex-grow: 0;
+}
+.container.chat form div.history .row .message .first-line .spacer {
+  flex-grow: 1;
+}
+.container.chat form div.history .row .message .first-line .raiting {
+  flex-grow: 0;
+  padding: 0 5px;
+}
+.container.chat form div.history .row .message .first-line .raiting i {
+  opacity: 0.65;
+  display: inline-block;
+  padding: 0 5px;
+}
+.container.chat form div.history .row .message .first-line .raiting i:hover {
+  opacity: 1;
+  transition: 150ms;
+}
+.container.chat form div.history .row .message .first-line .raiting i.clicked {
+  color: indigo;
+  opacity: 1;
+}
+.container.chat form .inputs {
+  width: 100%;
+  display: inline-flex;
+  padding: 10px 0 5px;
+}
+.container.chat form .inputs input[type="text"],
+.container.chat form .inputs input[type="submit"] {
+  height: 100%;
+  font-size: 120%;
+}
+.container.chat form .inputs input[type="text"]:focus,
+.container.chat form .inputs input[type="submit"]:focus {
+  outline: none;
+}
+.container.chat form .inputs input[type="text"] {
+  flex-grow: 1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: inset 0px 0px 3px -1px rgba(0, 0, 0, 0.67);
+  padding-left: 3px;
+}
+.container.chat form .inputs input[type="submit"] {
+  flex-grow: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 0px 3px -1px rgba(0, 0, 0, 0.67);
+  margin-left: 5px;
+}

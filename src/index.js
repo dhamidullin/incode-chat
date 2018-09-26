@@ -8,12 +8,13 @@ import "./index.css";
 import HeaderComponent from "./components/header/Header";
 import RegistrationComponent from "./components/authorization/Registration";
 import LoginComponent from "./components/authorization/Login";
+import ChatComponent from "./components/chat/Chat";
 
 ReactDOM.render(
   <Router>
     <div>
       <Route path="*" component={HeaderComponent} />
-      {/* <Route exact path="/" component={HomeComponent} /> */}
+      <Route exact path="/chat" component={ChatComponent} />
       <Route exact path="/register" component={RegistrationComponent} />
       <Route exact path="/login" component={LoginComponent} />
     </div>
@@ -21,6 +22,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
