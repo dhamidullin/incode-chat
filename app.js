@@ -49,6 +49,12 @@ app.use((req, res, next) => {
 app.use("/api/authentication", require("./routes/authentication"));
 app.use("/api/chat", require("./routes/chat"));
 
+app.get("*", (req, res, next) => {
+  if (res.statusCode == 200) {
+    res.sendFile(__dirname + "/build/index.html");
+  }
+});
+
 module.exports = {
   app,
   io
