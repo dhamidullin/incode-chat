@@ -60,6 +60,12 @@ header span span.small-text {
   font-size: 75% !important;
   color: rgba(255, 255, 255, 0.75);
 }
+header a span.small-text:before,
+header span span.small-text:before,
+header a span.small-text:after,
+header span span.small-text:after {
+  display: none;
+}
 header a:before,
 header span:before {
   top: 5%;
