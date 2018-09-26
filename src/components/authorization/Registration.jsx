@@ -31,14 +31,14 @@ class RegistrationComponent extends Component {
           }}
         >
           <h1>Регистрация</h1>
-          <label htmlFor="login">
-            <b>Логин</b>
+          <label htmlFor="username">
+            <b>Имя пользователя</b>
           </label>
           <input
             type="text"
-            name="login"
-            id="login"
-            placeholder="example@example.com"
+            name="username"
+            id="username"
+            placeholder="Steeve, Dave, Margaret, etc..."
           />
           <label htmlFor="password">
             <b>Пароль</b>
@@ -47,7 +47,7 @@ class RegistrationComponent extends Component {
             type="password"
             name="password"
             id="password"
-            placeholder="Пароль"
+            placeholder="password"
           />
           <label htmlFor="repeat">
             <b>Повторите пароль</b>
