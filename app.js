@@ -29,6 +29,8 @@ require("./models/Message");
 
 require("./passport");
 
+var io = require("./chat_engine_io");
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -51,7 +53,9 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/authentication", require("./routes/authentication"));
+app.use("/api/chat", require("./routes/chat"));
 
 module.exports = {
-  app
+  app,
+  io
 };
