@@ -12,7 +12,16 @@ class HeaderComponent extends Component {
       return false;
     }
   }
+  get username() {
+    let token = window.localStorage.getItem("token");
+    if (token) {
+      var payload = JSON.parse(window.atob(token.split(".")[1]));
 
+      return payload.username;
+    } else {
+      return null;
+    }
+  }
   render() {
     return (
       <header>
@@ -48,7 +57,7 @@ class HeaderComponent extends Component {
 
           {this.isAuthenticated && (
             <li>
-              <span>Профиль</span>
+              <span>{this.username}</span>
               <ul>
                 <li>
                   <Link to="settings">Настройки</Link>
