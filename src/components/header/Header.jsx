@@ -25,7 +25,7 @@ class HeaderComponent extends Component {
   render() {
     return (
       <header>
-        <Link to="/" className="logo">
+        <Link to="/chat" className="logo">
           Chat
         </Link>
         <ul className="navbar-menu">
@@ -54,19 +54,19 @@ class HeaderComponent extends Component {
             </Fragment>
           )}
 
-          {this.isAuthenticated && (
+          {/* {this.isAuthenticated && (
             <li>
               <Link to="dialogs">Диалоги</Link>
             </li>
-          )}
+          )} */}
 
           {this.isAuthenticated && (
             <li>
               <span>{this.username}</span>
               <ul>
-                <li>
+                {/* <li>
                   <Link to="settings">Настройки</Link>
-                </li>
+                </li> */}
                 <li>
                   <span
                     onClick={() => {
