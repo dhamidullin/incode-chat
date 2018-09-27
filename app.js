@@ -48,6 +48,7 @@ app.use((req, res, next) => {
 
 app.use("/api/authentication", require("./routes/authentication"));
 app.use("/api/chat", require("./routes/chat"));
+app.use("/api/history", require("./routes/history"));
 
 app.get("*", (req, res, next) => {
   if (res.statusCode == 200) {
