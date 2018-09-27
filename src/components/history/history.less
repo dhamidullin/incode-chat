@@ -1,10 +1,8 @@
 .query-bar {
   background: var(--orangegray);
   color: var(--orangegray-opposite);
+  user-select: none;
   form.row {
-    // display: inline-flex;
-    // flex-wrap: wrap;
-    // justify-content: center;
     padding: 8px;
     width: 100%;
     > .input-group {
@@ -20,8 +18,15 @@
         display: inline-block;
         margin: 0 4px;
       }
+      input:focus,
+      select:focus {
+        outline: none;
+      }
       input#username {
         width: 140px;
+      }
+      input#text {
+        width: 400px;
       }
       input[type="range"] {
         width: 180px;
@@ -29,9 +34,6 @@
         background: transparent;
         border-color: transparent;
         color: transparent;
-      }
-      input:focus {
-        outline: none;
       }
       span.range-value {
         display: inline-block;
@@ -41,7 +43,7 @@
         transform: translateX(-50%) translateY(-50%);
         font-size: 100px;
         // color: black;
-        opacity: 0.60;
+        opacity: 0.6;
         pointer-events: none;
         &.hidden {
           display: none;
@@ -52,5 +54,50 @@
   border-bottom: 1px solid var(--back-opposite);
 }
 .container.history {
-  padding-top: 0;
+  // padding-top: 0;
+  padding-bottom: 5vw;
+  table {
+    width: 100%;
+    background: var(--back-opposite);
+    * {
+      padding: 0;
+      margin: 0;
+      border-collapse: collapse;
+    }
+    thead {
+      font-size: 110%;
+      font-weight: bolder;
+      text-align: center;
+      color: var(--back);
+      td {
+        padding: 3 10px;
+      }
+    }
+    tbody {
+      tr {
+        // &:nth-child(2n - 1) {
+        //   background: var(--yellow);
+        // }
+        // &:not(:nth-child(2n - 1)) {
+        //   background: white;
+        // }
+        background: var(--yellow);
+        color: black;
+        td {
+          padding: 2px 5px 1px;
+          margin: 0;
+          &.username,
+          &.date {
+            white-space: nowrap;
+          }
+          &.username {
+            font-weight: bolder;
+          }
+          &.date {
+            font-size: 75%;
+          }
+        }
+      }
+    }
+  }
 }

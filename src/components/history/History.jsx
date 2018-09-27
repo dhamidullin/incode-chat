@@ -1,19 +1,20 @@
 import React, { Component, Fragment } from "react";
 import { get } from "axios";
+import Sugar from "sugar";
 import "./history.css";
 
 class HistoryComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filters: {
-        name: "",
-        text: "",
-        dateStart: null,
-        dateEnd: null,
-        count: 10
-      },
-      show_range_value: false
+      name: "",
+      text: "",
+      dateStart: null,
+      dateEnd: null,
+      count: 10,
+      show_range_value: false,
+      newFirst: true,
+      messages: []
     };
   }
 
@@ -21,17 +22,36 @@ class HistoryComponent extends Component {
     let key = e.target.name;
     let value = e.target.value;
 
-    console.log(`onInputChangeHandler {${key}: ${value}}`);
+    // console.log(key + ": " + value);
 
-    this.setState({ filters: { [key]: value } });
-    // this.forceUpdate();
+    this.setState({ [key]: value });
   };
 
   render() {
     return (
       <Fragment>
         <div className="query-bar">
-          <form action="" className="row">
+          <form
+            action=""
+            className="row"
+            onSubmit={e => {
+              e.preventDefault();
+
+              let params = this.state;
+              delete params.show_range_value;
+              delete params.messages;
+
+              get("/api/history/", {
+                params,
+                headers: {
+                  authorization: window.localStorage.getItem("token")
+                }
+              }).then(res => {
+                // console.log(res.data);
+                this.setState({ messages: res.data.messages });
+              });
+            }}
+          >
             <div className="input-group">
               <div className="input-group">
                 <label htmlFor="name">Имя:</label>
@@ -54,7 +74,7 @@ class HistoryComponent extends Component {
             </div>
             <div className="input-group">
               <div className="input-group">
-                <label htmlFor="dateStart">Дата начала:</label>
+                <label htmlFor="dateStart">От:</label>
                 <input
                   type="datetime-local"
                   id="dateStart"
@@ -63,7 +83,7 @@ class HistoryComponent extends Component {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="dateEnd">Дата окончания:</label>
+                <label htmlFor="dateEnd">До:</label>
                 <input
                   type="datetime-local"
                   id="dateEnd"
@@ -72,37 +92,86 @@ class HistoryComponent extends Component {
                 />
               </div>
             </div>
-            <div
-              className="input-group"
-              onMouseEnter={e => {
-                this.setState({ show_range_value: true });
-              }}
-              onMouseLeave={e => {
-                this.setState({ show_range_value: false });
-              }}
-            >
+            <div className="input-group">
               <label htmlFor="count">Записей на странице:</label>
               <input
                 type="range"
                 id="count"
-                step="5"
-                min="0"
-                max="100"
-                defaultValue="10"
+                step="1"
+                min="1"
+                max="20"
+                defaultValue="5"
                 name="count"
                 onChange={this.onInputChangeHandler}
+                onMouseDown={e => {
+                  this.setState({ show_range_value: true });
+                }}
+                onMouseUp={e => {
+                  this.setState({ show_range_value: false });
+                }}
               />
               <span
                 className={`range-value ${
                   this.state.show_range_value ? "" : "hidden"
                 }`}
               >
-                {this.state.filters.count}
+                {this.state.count}
               </span>
+            </div>
+            <div className="input-group">
+              <label htmlFor="sort">Сортировка</label>
+              <select
+                id="sort"
+                name="sort"
+                onChange={this.onInputChangeHandler}
+              >
+                <option value="new">Сначала новые</option>
+                <option value="old">Сначала старые</option>
+                <option value="a">По username A-z</option>
+                <option value="z">По username z-A</option>
+              </select>
+            </div>
+            <div className="input-group">
+              <input type="submit" value="Загрузить" />
             </div>
           </form>
         </div>
-        <div className="container history" />
+        <div className="container history">
+          <table>
+            <thead>
+              <tr>
+                <td>
+                  <span />
+                </td>
+                <td>
+                  <span>Username</span>
+                </td>
+                <td>
+                  <span>Дата</span>
+                </td>
+                <td>
+                  <span>Текст</span>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.messages.map((message, i) => (
+                <tr key={message._id}>
+                  <td className="index">{i + 1}</td>
+                  <td className="username">{message.owner_username}</td>
+                  <td className="date">
+                    {
+                      new Sugar.Date(message.date).format(
+                        "{dd} {Mon} {yyyy}, {HH}:{mm}:{ss}"
+                      ).raw
+                    }
+                  </td>
+                  <td className="text">{message.text}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Fragment>
     );
   }

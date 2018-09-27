@@ -1,6 +1,7 @@
 .query-bar {
   background: var(--orangegray);
   color: var(--orangegray-opposite);
+  user-select: none;
   border-bottom: 1px solid var(--back-opposite);
 }
 .query-bar form.row {
@@ -21,8 +22,15 @@
   display: inline-block;
   margin: 0 4px;
 }
+.query-bar form.row .input-group input:focus,
+.query-bar form.row .input-group select:focus {
+  outline: none;
+}
 .query-bar form.row .input-group input#username {
   width: 140px;
+}
+.query-bar form.row .input-group input#text {
+  width: 400px;
 }
 .query-bar form.row .input-group input[type="range"] {
   width: 180px;
@@ -31,9 +39,6 @@
   border-color: transparent;
   color: transparent;
 }
-.query-bar form.row .input-group input:focus {
-  outline: none;
-}
 .query-bar form.row .input-group span.range-value {
   display: inline-block;
   position: fixed;
@@ -41,12 +46,48 @@
   top: 40%;
   transform: translateX(-50%) translateY(-50%);
   font-size: 100px;
-  opacity: 0.60;
+  opacity: 0.6;
   pointer-events: none;
 }
 .query-bar form.row .input-group span.range-value.hidden {
   display: none;
 }
 .container.history {
-  padding-top: 0;
+  padding-bottom: 5vw;
+}
+.container.history table {
+  width: 100%;
+  background: var(--back-opposite);
+}
+.container.history table * {
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+.container.history table thead {
+  font-size: 110%;
+  font-weight: bolder;
+  text-align: center;
+  color: var(--back);
+}
+.container.history table thead td {
+  padding: 3 10px;
+}
+.container.history table tbody tr {
+  background: var(--yellow);
+  color: black;
+}
+.container.history table tbody tr td {
+  padding: 2px 5px 1px;
+  margin: 0;
+}
+.container.history table tbody tr td.username,
+.container.history table tbody tr td.date {
+  white-space: nowrap;
+}
+.container.history table tbody tr td.username {
+  font-weight: bolder;
+}
+.container.history table tbody tr td.date {
+  font-size: 75%;
 }
