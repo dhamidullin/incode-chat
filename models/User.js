@@ -10,7 +10,8 @@ var UserSchema = new mongoose.Schema(
       lowercase: true,
       index: true,
       unique: true,
-      max: 32
+      max: 32,
+      match: /\w{4,32}/
     },
     hash: String,
     salt: String

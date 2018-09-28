@@ -33,15 +33,10 @@ router.post("/register", function(req, res, next) {
   user.setPassword(req.body.password);
 
   user.save(err => {
-    console.log(err);
     if (!err) {
       res.json({ token: user.generateJWT() });
-    } else if (err.code === 11000) {
-      // 01 Unauthorized
-      res.status(401).json({ err: "Пользователь уже существует" });
-    } else if (err) {
-      console.log(err);
-      res.status(500).json({ err: "Database error" });
+    } else {
+      res.status(401).json({err: err.message});
     }
   });
 });
