@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { put, get } from "axios";
 import io from "socket.io-client";
 import Sugar from "sugar";
@@ -13,26 +13,31 @@ class ChatComponent extends Component {
       messages: []
     };
 
-    this.messages = [];
-  }
+    // this.socket.on("added_chat_message", newMessage => {
+    //   console.log({ newMessage });
+    //   this.setState(prevState => ({
+    //     messages: [...prevState.messages, newMessage]
+    //   }));
+    // });
 
-  componentDidMount() {
+    this.socket = io("http://localhost:8081", {
+      // query: "token=" + window.localStorage.getItem("token")
+    });
+
+    this.socket.on("added_chat_message", newMessage => {
+      return new Promise(() => {
+        this.setState(prevState => ({
+          messages: [...prevState.messages, newMessage]
+        }));
+      });
+    });
+
     get("/api/chat/last").then(res => {
-      this.messages = res.data.last;
-      this.forceUpdate();
+      this.setState(prevState => ({
+        messages: [...prevState.messages, ...res.data.last]
+      }));
+      this.socket.connect();
     });
-
-    var socket = io("http://localhost:8081", {
-      query: "token=" + window.localStorage.getItem("token")
-    });
-    socket.on("added_chat_message", data => {
-      //   this.setState({ messages: [this.state.messages, data] });
-      console.log(data);
-      this.messages.push(data);
-      this.forceUpdate();
-    });
-
-    socket.connect();
   }
 
   get isAuthenticated() {
@@ -70,7 +75,7 @@ class ChatComponent extends Component {
         >
           <div className="history">
             <div className="row">
-              {this.messages.map(message => (
+              {this.state.messages.map(message => (
                 <Message key={message._id} message={message} />
               ))}
             </div>
@@ -105,13 +110,11 @@ class Message extends Component {
   //     };
   //   }
   render() {
-    let { owner_id, owner_username, date, text } = this.props.message;
+    let { owner_username, date, text } = this.props.message;
     return (
       <div className="message">
         <div className="first-line">
-          <span className="name">
-            {owner_username}
-          </span>
+          <span className="name">{owner_username}</span>
           <div className="date">
             {new Sugar.Date(date).format("{dd} {Mon}, {HH}:{mm}:{ss}").raw}
           </div>
