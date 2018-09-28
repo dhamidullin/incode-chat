@@ -12,8 +12,8 @@ router.get("/", authorization_handler, (req, res, next) => {
 
   let { name, text, count, sort, dateStart, dateEnd } = req.query;
 
-  if (name) conditions.owner_username = { $in: new RegExp(name) };
-  if (text) conditions.text = { $in: new RegExp(text) };
+  if (name) conditions.owner_username = { $in: new RegExp(name, 'i') };
+  if (text) conditions.text = { $in: new RegExp(text, 'i') };
 
   conditions.date = { $gt: 0 };
   if (new Date(dateStart).getTime())
