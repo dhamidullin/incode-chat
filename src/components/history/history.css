@@ -88,6 +88,12 @@
 .container.history table tbody tr td.username {
   font-weight: bolder;
 }
+.container.history table tbody tr td.username .highlight {
+  background: orange;
+}
 .container.history table tbody tr td.date {
   font-size: 75%;
+}
+.container.history table tbody tr td.text .highlight {
+  background: yellowgreen;
 }

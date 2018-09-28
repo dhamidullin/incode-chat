@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { get } from "axios";
+import reactStringReplace from "react-string-replace";
 import Sugar from "sugar";
 import "./history.css";
 
@@ -16,6 +17,8 @@ class HistoryComponent extends Component {
       newFirst: true,
       messages: []
     };
+    this.lastSearchedName = "";
+    this.lastSearchedText = "";
   }
 
   onInputChangeHandler = e => {
@@ -40,6 +43,9 @@ class HistoryComponent extends Component {
               let params = this.state;
               delete params.show_range_value;
               delete params.messages;
+
+              this.lastSearchedName = this.state.name;
+              this.lastSearchedText = this.state.text;
 
               get("/api/history/", {
                 params,
@@ -155,24 +161,65 @@ class HistoryComponent extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.messages.map((message, i) => (
-                <tr key={message._id}>
-                  <td className="index">{i + 1}</td>
-                  <td className="username">{message.owner_username}</td>
-                  <td className="date">
-                    {
-                      new Sugar.Date(message.date).format(
-                        "{dd} {Mon} {yyyy}, {HH}:{mm}:{ss}"
-                      ).raw
-                    }
-                  </td>
-                  <td className="text">{message.text}</td>
-                </tr>
+              {this.state.messages.map((message, index) => (
+                <TablerowComponent
+                  key={message._id}
+                  message={message}
+                  index={index}
+                  searchedName={this.lastSearchedName}
+                  searchedText={this.lastSearchedText}
+                />
               ))}
             </tbody>
           </table>
         </div>
       </Fragment>
+    );
+  }
+}
+
+class TablerowComponent extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+  render() {
+    return (
+      <tr key={this.props.message._id}>
+        <td className="index">{this.props.index + 1}</td>
+        <td className="username">
+          {reactStringReplace(
+            this.props.message.owner_username,
+            this.props.searchedName,
+            (match, i) => {
+              return (
+                <span key={i} className="highlight">
+                  {match}
+                </span>
+              );
+            }
+          )}
+        </td>
+        <td className="date">
+          {
+            new Sugar.Date(this.props.message.date).format(
+              "{dd} {Mon} {yyyy}, {HH}:{mm}:{ss}"
+            ).raw
+          }
+        </td>
+        <td className="text">
+          {reactStringReplace(
+            this.props.message.text,
+            this.props.searchedText,
+            (match, i) => {
+              return (
+                <span key={i} className="highlight">
+                  {match}
+                </span>
+              );
+            }
+          )}
+        </td>
+      </tr>
     );
   }
 }
