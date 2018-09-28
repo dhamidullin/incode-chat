@@ -105,15 +105,15 @@ class Message extends Component {
   //     };
   //   }
   render() {
-    let { owner_id, owner_username, time, text } = this.props.message;
+    let { owner_id, owner_username, date, text } = this.props.message;
     return (
       <div className="message">
         <div className="first-line">
-          <Link to={`users/${owner_id}`} className="name">
+          <span className="name">
             {owner_username}
-          </Link>
+          </span>
           <div className="date">
-            {new Sugar.Date(time).format("{dd} {Mon}, {HH}:{mm}:{ss}").raw}
+            {new Sugar.Date(date).format("{dd} {Mon}, {HH}:{mm}:{ss}").raw}
           </div>
           <div className="spacer" />
           {/* <div className="raiting">

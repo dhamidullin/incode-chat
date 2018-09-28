@@ -40,6 +40,7 @@
   font-size: 110%;
   color: var(--back-opposite);
   flex-grow: 0;
+  font-weight: bolder;
 }
 .container.chat form div.history .row .message .first-line .date {
   font-size: 75%;
