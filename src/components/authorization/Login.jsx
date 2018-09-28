@@ -22,11 +22,7 @@ class LoginComponent extends Component {
                 this.props.history.push("/chat");
               })
               .catch(err => {
-                if (!err.response) {
-                  alert("Сервер недоступен");
-                } else {
                   alert(err.response.data.err);
-                }
               });
           }}
         >

@@ -23,10 +23,8 @@ class RegistrationComponent extends Component {
                 window.localStorage.setItem("token", res.data.token);
                 this.props.history.push("/chat");
               })
-              .catch(res => {
-                // res.response.status
-                // res.response.statusText;
-                alert("Ошибка запроса");
+              .catch(err => {
+                alert(err.response.data.err || 'Ошибка запроса, попробуйте позже.');
               });
           }}
         >
